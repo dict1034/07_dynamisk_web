@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8-co2_beregning</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+    <p>Hvad er din flyvetid?</p>
+    <input type="text" id="flyvetid">
+    <button>Udregn co2 og kig i consolen</button>
+
+    <script>
+        document.querySelector("button").addEventListener("click", buttonClicked);
+
+        function buttonClicked() {
+            let flyvetid = document.querySelector("#flyvetid").value;
+            let co2 = flyvetid * 109;
+
+
+            if (isNaN(flyvetid) || flyvetid == 0) {
+                console.log("Husk at angive tiden i tal.\n Prøv igen")
+            } else {
+                console.log(`du vil udlede ${co2} kg co2 på ${flyvetid}timer!`)
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>
