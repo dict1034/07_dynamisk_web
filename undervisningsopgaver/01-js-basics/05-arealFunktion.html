@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05-areal</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+    <p>Hvad er længden?</p>
+    <input type="text" id="laengde">
+    <p>Hvad er bredden?</p>
+    <input type="text" id="bredde">
+    <button>Udregn areal og kig i konsolen</button>
+
+    <script>
+        document.querySelector("button").addEventListener("click", buttonClicked);
+
+        function buttonClicked() {
+            let laengde = document.querySelector("#laengde").value;
+            let bredde = document.querySelector("#bredde").value;
+
+            let resultat = `Arealet er ${areal(laengde,bredde)} kvadratmeter`;
+
+
+            if (areal(laengde, bredde) <= 0) {
+                console.log("ikke en gyldig indtastning")
+
+            } else {
+                console.log(resultat);
+            }
+        }
+
+        // brugeren skal få besked om at det ikke er en gyldig intastning, hvis arealet bliver 0 eller mindre.
+
+
+
+        function areal(l, b) {
+            return (l * b);
+
+        }
+
+    </script>
+</body>
+
+</html>
