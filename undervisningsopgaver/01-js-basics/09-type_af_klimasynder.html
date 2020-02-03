@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02-areal</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+
+    <script>
+        let rejsetid = 9;
+        let resultat;
+        let co2 = rejsetid * 109;
+
+        // Hvis mængden af co2 er mindre end 100 kg
+        if (co2 < 100) {
+            resultat = "Tæt på Thunberg";
+        }
+
+        // Hvis mængden af co2 er mellem 100 og 200 kg
+        if (co2 >= 100 && co2 < 200) {
+            resultat = "Ja ja, du behøver ikke at mlede dig ud af Å!";
+        }
+        // hvis mængden af co2 er mellem 200 og 600
+        if (co2 >= 200 && co2 < 600) {
+            resultat = "Det er godt for turismen i Nordeuropa.";
+        }
+
+
+        // hvis mængden af co2 er over 600 kg
+        if (co2 > 600) {
+            resultat = "Nå ja vi kan jo altid kolonisere en anden planet.";
+        }
+
+        console.log(resultat);
+
+    </script>
+</body>
+
+</html>
