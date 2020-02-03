@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-areal</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+
+    <script>
+        let laengde = 3;
+        let bredde = 5;
+        let areal = laengde * bredde;
+        let resultat;
+
+
+
+        // hvis arealet er under 100, skal der stå: arealet er for lille
+        if (areal < 100) {
+            resultat = "arelaet er for lille";
+        }
+
+        // hvis arealet er mellem 100 og 200, skal der stå: arealet er ok
+        if (areal >= 100 && areal < 200) {
+            resultat = "arelaet er ok";
+        }
+        // er det større end (eller lig med) 200, skal der stå: arealet er for stort
+        if (areal >= 200) {
+            resultat = "arealet er for stort";
+        }
+
+        console.log(resultat);
+
+    </script>
+</body>
+
+</html>
