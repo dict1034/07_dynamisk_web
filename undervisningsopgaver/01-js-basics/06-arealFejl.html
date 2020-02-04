@@ -10,37 +10,70 @@
 
 <body>
 
+    <!--
     <p>Hvad er længden?</p>
     <input type="text" id="laengde">
     <p>Hvad er bredden?</p>
     <input type="text" id="bredde">
     <button>Udregn areal og kig i konsolen</button>
+-->
+
+    <input type="text" id="laengde">
+    <input type="text" id="bredde">
+    <button id="knap">Beregn</button>
+
 
     <script>
-        let laengde = prompt("Angiv laengde");
-        let bredde = prompt("angiv bredde");
+        //        let laengde = prompt("Angiv laengde");
+        //        let bredde = prompt("angiv bredde");
+        //
+        //        function areal(l, b) {
+        //            let a = (l * b);
+        //            if (a == 0) {
+        //                return (`husk laengde og bredde skal være tal.\n prøv igen`);
+        //            } else if (isNaN(a)) {
+        //                return (`husk laengde og bredde skal være tal.\n prøv igen`);
+        //            } else {
+        //                return (`arealet er ${a}.\n vil du lave et nyt areal?`);
+        //            }
+        //
+        //        }
+        //
+        //        let resultat = areal(laengde, bredde);
+        //
+        //        confirm(resultat);
+        //
+        //        if (confirm) {
+        //            location.reload();
+        //        }
 
-        function areal(l, b) {
-            let a = (l * b);
-            if (a == 0) {
-                return (`husk laengde og bredde skal være tal.\n prøv igen`);
-            } else if (isNaN(a)) {
-                return (`husk laengde og bredde skal være tal.\n prøv igen`);
-            } else {
-                return (`arealet er ${a}.\n vil du lave et nyt areal?`);
+
+
+        document.querySelector("#knap").addEventListener("click", klikPåKnap);
+
+        function klikPåKnap() {
+            let laengde = document.querySelector("#laengde").value;
+            let bredde = document.querySelector("#bredde").value;
+            let resultat = laengde * bredde;
+
+            if (isNaN(laengde) == true || isNaN(bredde) == true) {
+                resultat = "Husk at længde og bredde skal angives i tal"
             }
+            console.log("resultatet", resultat);
 
-        }
-
-        let resultat = areal(laengde, bredde);
-
-        confirm(resultat);
-
-        if (confirm) {
-            location.reload();
         }
 
     </script>
+
+
+
+
+
+
+
+
+
+
 </body>
 
 </html>
