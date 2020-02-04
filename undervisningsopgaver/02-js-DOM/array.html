@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>array test</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<style>
+    div {
+        background: blue;
+        height: 100px;
+        width: 100px;
+        margin: 1rem;
+        display: inline-block;
+
+    }
+
+    .red {
+        background: red;
+    }
+
+    .green {
+        background: green;
+    }
+
+</style>
+
+<body>
+
+
+    <div class="red"></div>
+    <div class="red"></div>
+    <div class="red"></div>
+    <div class=""></div>
+    <div class="red"></div>
+    <div class="red"></div>
+    <div class="red"></div>
+    <div class="red"></div>
+
+
+    <script>
+        const rødeKasser = document.querySelectorAll("div");
+        console.log(rødeKasser);
+        rødeKasser.forEach(kasse => {
+            kasse.addEventListener("click", blivBlå)
+            kasse.style.cursor = "pointer";
+
+        });
+
+        function blivBlå() {
+            console.log(this);
+            this.classList.toggle("red");
+            this.classList.toggle("green");
+            //            this.style.background = "green";
+        }
+
+
+
+        //        const undervisere = ["Kamilla", "Martin", "Klaus", "MigSelv"];
+        //        console.log(undervisere.length);
+        //
+        //
+        //
+        //        undervisere.forEach((lærer, index) => console.log(lærer, index));
+
+    </script>
+</body>
+
+</html>
