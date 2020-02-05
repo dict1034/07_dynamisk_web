@@ -33,6 +33,7 @@
     <div class="cirkel"></div>
 
     <script>
+        // her puttes alt ind i en funktion kaldet start, som eventlisteneren her lytter efter. På denne måde sikre man sig at DOM'en er loadet, men at ting som billeder venter med at loades.
         document.addEventListener("DOMContentLoaded", start);
 
         function start() {

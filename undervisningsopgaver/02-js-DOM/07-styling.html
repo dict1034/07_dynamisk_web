@@ -61,6 +61,14 @@
 
         function stop() {
             firkant.removeEventListener("click", flyt);
+            // en transition så det tager 1.5 sekunder før den bliver rød, efter man har clikket
+            firkant.style.transition = "1.5s";
+            //firkanten bliver rød
+            firkant.style.backgroundColor = "red";
+            // en transition så det tager 1.5 sekunder før cirklen forsvinder
+            cirkel.style.transition = "1.5s";
+            // en transform så den forsvinder
+            cirkel.style.transform = "scale(0)";
 
         }
 

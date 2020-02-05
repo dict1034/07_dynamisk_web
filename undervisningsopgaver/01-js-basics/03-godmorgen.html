@@ -12,23 +12,24 @@
     <script>
         let time = new Date().getHours();
         console.log(time);
-        //godmorgen mellem kl 5 og 10
+
+        //godmorgen mellem kl 5 og 10, if tid er større end eller lig med 5 og mindre end 10, sig godmorgen
 
         if (time >= 5 && time < 10) {
             console.log("Godmorgen");
         }
 
-        //goddag mellem kl 10 og 18
+        //goddag mellem kl 10 og 18, if tid er større end eller lig med 10 og mindre end 18, sig goddag
         if (time >= 10 && time < 18) {
             console.log("Goddag");
         }
 
-        //godaften mellem kl 18 og 24
+        //godaften mellem kl 18 og 24, if tid er større end eller lig med 18 og mindre end 24, sig godaften
         if (time >= 18 && time < 24) {
             console.log("Godaften");
         }
 
-        //godnat mellem kl 24 og 05
+        //godnat mellem kl 24 og 05, if tid er større end eller lig med 0 og mindre end 5, sig godnat
         if (time >= 0 && time < 5) {
             console.log("Godnat");
         }

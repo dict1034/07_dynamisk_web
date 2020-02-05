@@ -17,30 +17,28 @@
     <button>Udregn areal og kig i konsolen</button>
 
     <script>
+        //tilføjer eventlistener på button
         document.querySelector("button").addEventListener("click", buttonClicked);
 
         function buttonClicked() {
             let laengde = document.querySelector("#laengde").value;
             let bredde = document.querySelector("#bredde").value;
 
+            // template litterals så man kan indtaste en hver værdi og beregne arealet
             let resultat = `Arealet er ${areal(laengde,bredde)} kvadratmeter`;
 
-
+            //if arealet er mindre end 0 er det en ugyldig indtastning og det udskrives i consolen
             if (areal(laengde, bredde) <= 0) {
                 console.log("ikke en gyldig indtastning")
 
+                // else udskriv i consolen variablen resultat
             } else {
                 console.log(resultat);
             }
         }
 
-        // brugeren skal få besked om at det ikke er en gyldig intastning, hvis arealet bliver 0 eller mindre.
-
-
-
         function areal(l, b) {
             return (l * b);
-
         }
 
     </script>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>8-co2_beregning</title>
+    <title>10 er du en klimasynder</title>
     <link rel="stylesheet" href="">
 </head>
 
@@ -15,16 +15,19 @@
     <button>Udregn co2 og kig i consolen</button>
 
     <script>
+        // tilføjer eventlistner på button
         document.querySelector("button").addEventListener("click", buttonClicked);
 
         function buttonClicked() {
             let flyvetid = document.querySelector("#flyvetid").value;
             let co2 = flyvetid * 109;
 
-
+            // udskriver i consolen, hvis det brugeren har intastet is not a number (/n betyder new line ish altså et linebreak)
             if (isNaN(flyvetid) || flyvetid == 0) {
                 console.log("Husk at angive tiden i tal.\n Prøv igen")
-            } else {
+            }
+            // udskriver ved hjælp af template litterals hvad flyvetid og co2 bliver baseret på hvad brugeren har indtastet
+            else {
                 console.log(`du vil udlede ${co2} kg co2 på ${flyvetid}timer!`)
             }
 

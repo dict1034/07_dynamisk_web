@@ -42,6 +42,8 @@
 
         document.querySelector(".firkant").innerHTML = `<img src=${firkantURL} alt="grøn frø">`;
         document.querySelector(".cirkel").innerHTML = `<img src=${cirkelURL} alt="lyserød gris">`;
+
+        // her bruges appendChild, da det betyder at "tilføje" og ved appendChild bliver denne tilføjelse last child, hvor hvis man brugte noget andet ville billedet bare lægge sig ovenpå/bagved grisen
         document.querySelector(".cirkel").appendChild(img);
 
     </script>

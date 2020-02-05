@@ -13,9 +13,13 @@
     <p>Hvad hedder du? </p>
     <input type="text" id="navn">
     <button>Klik og kig i consolen</button>
+
+
     <script>
+        // vigtigt at lave denne queryselector, så knappen bliver forbundet til hvad der sker nede i funktionen buttonClicked. Det er nemlig der, navnet tilpasser sig hvad brugeren har skrevet.
         document.querySelector("button").addEventListener("click", buttonClicked);
 
+        // her bruges der template litterals, så navnet vil tilpasse sig efter hvad brugeren har skrevet oppe i inputtet.
         function buttonClicked() {
             let brugernavn = document.querySelector("#navn").value;
             console.log(`god hjertelig dag kære ${brugernavn}!`);

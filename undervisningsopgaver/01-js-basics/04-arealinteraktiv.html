@@ -17,6 +17,7 @@
     <button>Udregn areal og kig i konsolen</button>
 
     <script>
+        // tilføjer en eventlistener på button
         document.querySelector("button").addEventListener("click", buttonClicked);
 
         function buttonClicked() {
@@ -24,8 +25,10 @@
             let bredde = document.querySelector("#bredde").value;
             let areal = laengde * bredde;
 
+            // bruger template litterals, så beregningen kommer ud rigtig i forhold til de indtastninger brugeren har lavet
             let resultat = `laengden er ${laengde} meter og bredden er ${bredde} meter. Arealet er ${areal}kvadratmeter`
 
+            // consol logger variablen resultat
             console.log(resultat);
         }
 
