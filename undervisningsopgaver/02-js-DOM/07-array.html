@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09 array</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<style>
+    body {
+        color: burlywood;
+    }
+
+    #display {
+        width: 20vw;
+        height: 20vw;
+        border: 1px solid silver;
+        margin: 7vw;
+        padding: 1vw;
+    }
+
+</style>
+
+<body>
+    <div id="display"></div>
+    <script>
+        let playlist = ["Superego", "Defeated No More", "Willing & Able", "DYSFUNCTIONAL", "Jet Black", "GOT IT GOOD", "Dang", "I Don't Want It At All", "Right Here", "Boggie 2Nite"];
+        // her bruges innerHTML for at kunne lave linebreak efter hver sang, så de får hver sin linje
+        playlist.forEach(sang => {
+            document.querySelector("#display").innerHTML += `${sang} <br>`;
+        })
+
+    </script>
+</body>
+
+</html>
