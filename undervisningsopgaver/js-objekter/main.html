@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06-vismedtemplate</title>
+    <link rel="stylesheet" href="">
+
+
+
+    <style>
+        article {
+            border: 1px solid black;
+        }
+
+        article:first-child {
+            border: 5px solid red;
+        }
+
+        article:nth-child(even) {
+            background-color: grey;
+        }
+
+
+        main {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            max-width: 1000px;
+            margin: 0 auto;
+            grid-gap: 10px;
+        }
+
+    </style>
+</head>
+
+
+
+<section class="data-container"></section>
+
+<template>
+    <article id="dyr">
+        <h3></h3>
+        <img src="" alt="">
+        <p class="type">Type:</p>
+        <p class="levested">Levested:</p>
+    </article>
+</template>
+<main></main>
+
+
+<body>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+
+
+        const array = [{
+                "navn": "frø",
+                "type": "amfibie",
+                "billede": "http://mabe-kea.dk/E19/pics/frog.png",
+                "levested": "haver"
+            }, {
+                "navn": "gris",
+                "type": "pattedyr",
+                "billede": "http://mabe-kea.dk/E19/pics/pig.png",
+                "levested": "svinefarme"
+            }, {
+                "navn": "ræv",
+                "type": "pattedyr",
+                "billede": "http://mabe-kea.dk/E19/pics/fox.png",
+                "levested": "skove"
+            }, {
+                "navn": "sild",
+                "type": "fisk",
+                "billede": "http://mabe-kea.dk/E19/pics/sild.jpg",
+                "levested": "havet"
+            }, {
+                "navn": "krokodille",
+                "type": "krybdyr",
+                "billede": "http://mabe-kea.dk/E19/pics/kroko.jpg",
+                "levested": "Afrika"
+
+            }
+
+        ];
+
+        console.log(array);
+
+        function start() {
+            console.log("start");
+
+
+            const container = document.querySelector("main");
+            const dyrtemplate = document.querySelector("template");
+
+            //løb dyrene igennem og indsæt data i en template
+
+            array.forEach(dyr => {
+                //placer dyr i HTML
+                let klon = dyrtemplate.cloneNode(true).content;
+                klon.querySelector("h3").textContent = dyr.navn;
+                klon.querySelector(".type").textContent += dyr.type;
+                klon.querySelector(".levested").textContent += dyr.levested;
+                klon.querySelector("img").src = dyr.billede;
+                container.appendChild(klon);
+            })
+
+
+        }
+
+    </script>
+</body>
+
+</html>

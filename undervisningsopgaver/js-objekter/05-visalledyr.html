@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05-vis alle dyr</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<article id="dyr">
+
+</article>
+
+
+<body>
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+
+        function start() {
+            console.log("start");
+
+            const article = document.querySelector("article");
+
+            const dyr = {
+                navn: "gris",
+                type: "pattedyr",
+                levested: "svinefarme",
+                billede: "http://mabe-kea.dk/E19/pics/pig.png",
+
+            }
+            const array = [{
+                    "navn": "frø",
+                    "type": "amfibie",
+                    "billede": "http://mabe-kea.dk/E19/pics/frog.png",
+                    "levested": "haver"
+                }, {
+                    "navn": "gris",
+                    "type": "pattedyr",
+                    "billede": "http://mabe-kea.dk/E19/pics/pig.png",
+                    "levested": "svinefarme"
+                }, {
+                    "navn": "ræv",
+                    "type": "pattedyr",
+                    "billede": "http://mabe-kea.dk/E19/pics/fox.png",
+                    "levested": "skove"
+                }, {
+                    "navn": "sild",
+                    "type": "fisk",
+                    "billede": "http://mabe-kea.dk/E19/pics/sild.jpg",
+                    "levested": "havet"
+                }, {
+                    "navn": "krokodille",
+                    "type": "krybdyr",
+                    "billede": "http://mabe-kea.dk/E19/pics/kroko.jpg",
+                    "levested": "Afrika"
+
+                }
+
+            ];
+
+            console.log(array);
+
+            const destination = document.querySelector("#dyr");
+            const object = `Navn: ${dyr.navn} Type: {dyr.type} Billede: ${dyr.billede} Levested: ${dyr.levested}`;
+            console.log(object);
+
+            article.textContent = "Navn:gris, type:pattedyr, levested:svinefarme";
+            article.innerHTML += "<br>"
+
+
+            // indsæt billede uden HTML
+            let img = document.createElement("img");
+            img.src = "http://mabe-kea.dk/E19/pics/pig.png";
+
+            document.querySelector("article").appendChild(img);
+
+        }
+
+    </script>
+</body>
+
+</html>
