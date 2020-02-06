@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-object</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<article id="dyr">
+
+
+</article>
+
+
+<body>
+    <script>
+        const dyr = {
+            navn: "gris",
+            type: "pattedyr",
+            billede: "http://mabe-kea.dk/E19/pics/pig.png",
+            levested: "svinefarme",
+        }
+
+        const destination = document.querySelector("#dyr");
+        const object = `Navn: ${dyr.navn} Type: {dyr.type} Billede: ${dyr.billede} Levested: ${dyr.levested}`;
+        console.log(object);
+
+    </script>
+</body>
+
+</html>
