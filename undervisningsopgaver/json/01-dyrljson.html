@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06-vismedtemplate</title>
+    <link rel="stylesheet" href="">
+
+
+
+    <style>
+        article {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+
+
+<section class="data-container"></section>
+
+<template>
+    <article id="dyr">
+        <h3></h3>
+        <img src="" alt="">
+        <p class="type">Type:</p>
+        <p class="levested">Levested:</p>
+    </article>
+</template>
+
+
+<body>
+
+
+
+    <script>
+        //arrayet er tomt og puttet ind i en .json fil
+        let alledyr = [];
+
+        document.addEventListener("DOMContentLoaded", start);
+
+        //denne funktion kan virke overflødig, men laves in case at man skal lave mange funktioner
+        function start() {
+            console.log("start");
+            hentData();
+        }
+
+        async function hentData() {
+            // henter arrayet, som er lagt over i json.filen
+            const response = await fetch("alledyr.json");
+            console.log(response);
+            alledyr = await response.json();
+            console.log(alledyr);
+            visDyr();
+        }
+
+
+
+
+        function visDyr() {
+
+            const container = document.querySelector(".data-container");
+            const dyrtemplate = document.querySelector("template");
+
+            //løb dyrene igennem og indsæt data i en template
+
+            alledyr.forEach(dyr => {
+                //placer dyr i HTML
+                let klon = dyrtemplate.cloneNode(true).content;
+                klon.querySelector("h3").textContent = dyr.navn;
+                klon.querySelector(".type").textContent += dyr.type;
+                klon.querySelector(".levested").textContent += dyr.levested;
+                klon.querySelector("img").src = dyr.billede;
+                container.appendChild(klon);
+            })
+
+        }
+    </script>
+</body></html>
