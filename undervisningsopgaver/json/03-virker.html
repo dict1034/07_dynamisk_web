@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>06-vismedtemplate</title>
+    <title>03-virker</title>
     <link rel="stylesheet" href="">
     <style>
         article {
@@ -35,7 +35,31 @@
             text-align: center;
         }
 
+        button {
+            border: 2px solid black;
+            background: white;
+
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+
+        .valgt {
+            color: red;
+        }
+
     </style>
+
+
+    <nav>
+        <button class="filter valgt" data-køn="alle">Alle</button>
+        <button class="filter" data-køn="m">Mænd</button>
+        <button class="filter" data-køn="k">Kvinder</button>
+        <button class="filter" data-køn="andet">Andet</button>
+
+    </nav>
 
 </head>
 
@@ -50,7 +74,6 @@
         <p class="alder">Alder: </p>
         <p class="hobby">Hobby: </p>
         <p class="sex">Køn: </p>
-
     </article>
 </template>
 
@@ -60,6 +83,7 @@
         // link til google sheet
         const endpoint = "https://spreadsheets.google.com/feeds/list/1XWWbfWszD7f4jHqp51V_oT3pkHuR-ceEUw4YtrvK7F0/od6/public/values?alt=json";
         let personer = [];
+        let filter = "k";
 
         document.addEventListener("DOMContentLoaded", start);
 
@@ -80,20 +104,44 @@
 
         function visPersoner() {
             const container = document.querySelector(".data-container");
+            container.innerHTML = "";
             const template = document.querySelector("template");
 
             personer.feed.entry.forEach(person => {
-                let klon = template.cloneNode(true).content;
-                klon.querySelector("h2").textContent = person.gsx$navn.$t;
-                // plus er vigtigt her for at den ikke bare overskriver førnævnte, men tilføjer det efter... altså så der både står fornavn og efternavn og " " gør at der kommer mellemrum imellem
-                klon.querySelector("h2").textContent += " " + person.gsx$efternavn.$t;
-                klon.querySelector("img").src = person.gsx$billede.$t;
-                klon.querySelector("img").alt = person.gsx$navn.$t;
-                klon.querySelector(".alder").textContent += person.gsx$alder.$t;
-                klon.querySelector(".hobby").textContent += person.gsx$hobby.$t;
-                klon.querySelector(".sex").textContent += person.gsx$sex.$t;
-                container.appendChild(klon);
+
+                //person.gsx$sex.$t == filter
+
+
+                if (filter == "alle" || filter == person.gsx$sex.$t) {
+                    let klon = template.cloneNode(true).content;
+                    klon.querySelector("h2").textContent = person.gsx$navn.$t;
+                    // plus er vigtigt her for at den ikke bare overskriver førnævnte, men tilføjer det efter... altså så der både står fornavn og efternavn og " " gør at der kommer mellemrum imellem
+                    klon.querySelector("h2").textContent += " " + person.gsx$efternavn.$t;
+                    klon.querySelector("img").src = person.gsx$billede.$t;
+                    klon.querySelector("img").alt = person.gsx$navn.$t;
+                    klon.querySelector(".alder").textContent += person.gsx$alder.$t;
+                    klon.querySelector(".hobby").textContent += person.gsx$hobby.$t;
+                    klon.querySelector(".sex").textContent += person.gsx$sex.$t;
+                    container.appendChild(klon);
+                    addEventListenersToButtons();
+
+                }
             })
+        }
+
+
+
+        function addEventListenersToButtons() {
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.addEventListener("click", filtrering);
+            })
+        }
+
+
+        function filtrering() {
+            console.log("Filtrering");
+            filter = this.dataset.køn;
+            visPersoner();
         }
 
     </script>
