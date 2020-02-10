@@ -126,9 +126,6 @@
 
             personer.feed.entry.forEach(person => {
 
-                //person.gsx$sex.$t == filter
-
-
                 if (filter == "alle" || filter == person.gsx$sex.$t) {
                     let klon = template.cloneNode(true).content;
                     klon.querySelector("h2").textContent = person.gsx$navn.$t;
