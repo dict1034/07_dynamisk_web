@@ -7,6 +7,7 @@
     <title>06-filtersortering</title>
     <link rel="stylesheet" href="">
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+
     <style>
         article {
             border: 1px solid black;
@@ -35,7 +36,6 @@
         h2 {
             text-align: center;
             font-family: 'Bebas Neue', cursive;
-
         }
 
         button {
@@ -59,8 +59,9 @@
             display: flex;
             justify-content: center;
             font-family: 'Bebas Neue', cursive;
-
         }
+
+
 
         button:focus {
             outline: 0;
@@ -74,7 +75,10 @@
         <button class="filter" data-køn="m">Mænd</button>
         <button class="filter" data-køn="k">Kvinder</button>
         <button class="filter" data-køn="andet">Andet</button>
-        <button class="filter" data-alder="alder">Alder</button>
+
+
+        <button class="aldersfilter" data-alder="55">Vis under 55 </button>
+        <button class="aldersfilter" data-alder="55">Vis over 55</button>
 
     </nav>
 
@@ -101,7 +105,7 @@
         const endpoint = "https://spreadsheets.google.com/feeds/list/1XWWbfWszD7f4jHqp51V_oT3pkHuR-ceEUw4YtrvK7F0/od6/public/values?alt=json";
         let personer = [];
         let filter = "alle";
-        let tal = "55";
+        let filterAlder = 55;
 
         document.addEventListener("DOMContentLoaded", start);
 
@@ -126,11 +130,7 @@
             const template = document.querySelector("template");
 
             personer.feed.entry.forEach(person => {
-
-                //person.gsx$sex.$t == filter
-
-
-                if (filter == "alle" || filter == person.gsx$sex.$t) {
+                if ((filter == "alle" || filter == person.gsx$sex.$t) && (filterAlder > person.gsx$alder.$t)) {
                     let klon = template.cloneNode(true).content;
                     klon.querySelector("h2").textContent = person.gsx$navn.$t;
                     // plus er vigtigt her for at den ikke bare overskriver førnævnte, men tilføjer det efter... altså så der både står fornavn og efternavn og " " gør at der kommer mellemrum imellem
@@ -144,10 +144,6 @@
                     addEventListenersToButtons();
 
                 }
-
-                if ((køn == "k" && alder > 55) || (køn == "m" && alder < 55)) {
-                    console.log(parseInt(tal));
-                }
             })
         }
 
@@ -157,6 +153,20 @@
             document.querySelectorAll(".filter").forEach(elm => {
                 elm.addEventListener("click", filtrering);
             })
+            document.querySelector(".aldersfilter").addEventListener("click", aldersFiltrering);
+        }
+
+
+        function aldersFiltrering() {
+            if (filterAlder == 0) {
+                filterAlder = parseInt(this.dataset.alder);
+                this.classList.add("valgt");
+
+            } else {
+                filterAlder = 0;
+                this.classList.remove("valgt");
+            }
+            visPersoner();
         }
 
 
@@ -166,7 +176,6 @@
             filter = this.dataset.køn;
             document.querySelectorAll(".filter").forEach(elm => {
                 elm.classList.remove("valgt");
-
             })
 
             this.classList.add("valgt");
