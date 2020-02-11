@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bistro Babushka</title>
     <link rel="stylesheet" href="">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -39,7 +39,7 @@
             width: 90px;
             font-family: 'Roboto', sans-serif;
             text-transform: uppercase;
-            font-weight: 400;
+            font-weight: 300;
             padding-left: 30px;
             font-size: 1.05rem;
 
@@ -139,9 +139,7 @@
                     klon.querySelector("img").src = `imgs/small/${enRet.gsx$billede.$t}-sm.jpg`;
                     klon.querySelector("img").alt = enRet.gsx$navn.$t;
                     klon.querySelector(".kort").textContent += enRet.gsx$kort.$t;
-                    klon.querySelector(".pris").textContent += enRet.gsx$pris.$t;
-                    //                    klon.querySelector(".pris").textContent + ",-";
-
+                    klon.querySelector(".pris").textContent += enRet.gsx$pris.$t + ",-";
                     container.appendChild(klon);
                     addEventListenersToButtons();
                 }
