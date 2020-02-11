@@ -110,6 +110,11 @@
                     detalje.querySelector("img").alt = "portræt af " + person.gsx$navn.$t + person.gsx$efternavn.$t;
 
                 }
+
+
+                detalje.querySelector("button").addEventListener("click", () => {
+                    history.back();
+                })
             });
         }
 
