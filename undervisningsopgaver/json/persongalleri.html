@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>06-filtersortering</title>
+    <title>persongalleri</title>
     <link rel="stylesheet" href="">
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
 
@@ -21,7 +21,7 @@
             width: 100%;
         }
 
-        section {
+        .data-container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 10px;
@@ -67,6 +67,19 @@
             outline: 0;
         }
 
+
+
+        #person {
+            margin: 3em;
+            padding: 2em;
+            background-color: white;
+        }
+
+
+        .skjul {
+            display: none;
+        }
+
     </style>
 
     <h1>Alle</h1>
@@ -75,6 +88,8 @@
         <button class="filter" data-køn="m">Mænd</button>
         <button class="filter" data-køn="k">Kvinder</button>
         <button class="filter" data-køn="andet">Andet</button>
+
+
         <button class="aldersfilter" data-alder="55">Vis under 55 </button>
         <button class="aldersfilter" data-alder="55">Vis over 55</button>
 
@@ -87,7 +102,7 @@
 <section class="data-container"></section>
 
 <template>
-    <article id="personer">
+    <article class="personer">
         <h2></h2>
         <img src="" alt="">
         <p class="alder">Alder: </p>
@@ -138,13 +153,19 @@
                     klon.querySelector(".alder").textContent += person.gsx$alder.$t;
                     klon.querySelector(".hobby").textContent += person.gsx$hobby.$t;
                     klon.querySelector(".sex").textContent += person.gsx$sex.$t;
+                    // klon.querySelector(".person").addEventListener("click", () => visDetalje(person));
+                    klon.querySelector(".personer").addEventListener("click", () => {
+
+                        location.href = `detalje.html?id=${person.gsx$id.$t}`;
+
+                        //                        visDetalje(person);
+                    });
                     container.appendChild(klon);
                     addEventListenersToButtons();
 
                 }
             })
         }
-
 
 
         function addEventListenersToButtons() {
