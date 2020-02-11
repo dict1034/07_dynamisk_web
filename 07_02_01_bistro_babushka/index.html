@@ -10,7 +10,6 @@
     <style>
         * {
             box-sizing: border-box;
-            scroll-behavior: smooth;
         }
 
 
@@ -26,6 +25,8 @@
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             grid-column-gap: 25px;
             grid-row-gap: 25px;
+            padding-top: 130px;
+
         }
 
         button:focus {
@@ -34,14 +35,15 @@
 
         button {
             border: none;
-            background: white;
             height: 60px;
             width: 90px;
             font-family: 'Roboto', sans-serif;
             text-transform: uppercase;
             font-weight: 300;
-            padding-left: 30px;
-            font-size: 1.05rem;
+            padding-left: 45px;
+            padding-top: 90px;
+            font-size: 0.9rem;
+            background-color: transparent;
 
 
         }
@@ -57,11 +59,8 @@
             font-weight: 900;
         }
 
-        a:hover button {
-            font-weight: 900;
-        }
 
-        nav:hover {
+        button:hover {
             font-weight: 900;
         }
 
@@ -78,6 +77,33 @@
             justify-content: center;
             font-size: 3rem;
 
+        }
+
+        header {
+            position: fixed;
+            background-color: white;
+            height: 100px;
+            z-index: 2px;
+            width: 100vw;
+            top: 0;
+        }
+
+        .footerh1 {
+            text-align: left;
+        }
+
+        .footerp {
+            text-align: center;
+        }
+
+        footer {
+            border-top: 1px solid black;
+            padding-bottom: 20px;
+        }
+
+
+        .data-container {
+            padding-bottom: 130px;
         }
 
     </style>
@@ -108,6 +134,19 @@
 </template>
 
 <body>
+
+
+    <footer>
+        <h1 class="footerh1">Adresse</h1>
+        <p class="footerp">Grønnegade 97 <br> 1234 København K</p>
+        <h1 class="footerh1">Åbningstider</h1>
+        <p class="footerp">Mandag-fredag 10:30-22:00 <br></p>
+        <p class="footerp">Fredag-søndag 12:00-23:00</p>
+
+
+    </footer>
+
+
     <script>
         const endpoint = "https://spreadsheets.google.com/feeds/list/17Dd7DvkPaFamNUdUKlrFgnH6POvBJXac7qyiS6zNRw0/od6/public/values?alt=json&fbclid=IwAR212z4P8-Ghh58GitdbY9ZU-e7dDv-kZC5B7zI4Z-c_MQGWcLRRx9m3JmM";
         let mad = [];
@@ -160,6 +199,7 @@
             kategori = this.dataset.kategori;
             document.querySelectorAll(".filter").forEach(elm => {
                 elm.classList.remove("valgt");
+                window.scrollTo(0, 0);
             })
 
             this.classList.add("valgt");
