@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bistro Babushka singleview</title>
+    <link rel="stylesheet" href="">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(253, 243, 228);
+            margin: 0;
+
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .data-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-column-gap: 25px;
+            grid-row-gap: 25px;
+            padding-top: 130px;
+
+        }
+
+
+        #detalje p {
+            padding-top: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        button:focus {
+            outline: 0;
+        }
+
+        button {
+            border: none;
+            height: 60px;
+            width: 90px;
+            font-family: 'Roboto', sans-serif;
+            text-transform: uppercase;
+            font-weight: 300;
+            padding-left: 45px;
+            padding-top: 90px;
+            font-size: 0.9rem;
+            background-color: transparent;
+
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            position: fixed;
+        }
+
+        .valgt {
+            font-weight: 900;
+        }
+
+
+        button:hover {
+            font-weight: 900;
+        }
+
+        p,
+        h2 {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h1 {
+            font-family: 'Roboto', sans-serif;
+            text-transform: uppercase;
+            font-weight: 900;
+            display: flex;
+            justify-content: center;
+            font-size: 3rem;
+
+
+        }
+
+        header {
+            background-color: white;
+            height: 0px;
+            z-index: 2px;
+            width: 100vw;
+            top: 0;
+            background-color: rgb(253, 243, 228);
+            align-content: center;
+
+        }
+
+        .footerh1 {
+            text-align: left;
+        }
+
+        .footerp {
+            text-align: center;
+        }
+
+        footer {
+            border-top: 1px solid black;
+            padding-bottom: 20px;
+        }
+
+
+        .data-container {
+            padding-bottom: 130px;
+        }
+
+
+        .skjul {
+            display: none;
+        }
+
+        #detalje {
+            position: absolute;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 10;
+            overflow: scroll;
+            text-align: center;
+
+        }
+
+        #detalje img {
+            width: 50%;
+            height: 50%;
+            display: block;
+            margin: 0 auto;
+
+        }
+
+        #enRet {
+            margin: 3em;
+            padding: 2em;
+            background-color: white;
+            justify-content: center;
+        }
+
+
+        #x {
+            font-size: 3rem;
+            right: 80px;
+            position: absolute;
+
+        }
+
+    </style>
+
+
+
+    <section id="detalje" class="skjul">
+        <button id="x">X</button>
+        <article id="enRet">
+            <h1>NAVN</h1>
+            <img src="" alt="">
+            <p>Kort</p>
+            <p>Oprindelse</p>
+
+            <p>Pris</p>
+        </article>
+    </section>
+
+
+    <header>
+        <h1>Bistro Babushka </h1>
+    </header>
+
+    <nav>
+        <button class="filter valgt" data-kategori="alle">Alle</button>
+        <button class="filter" data-kategori="forretter">Forretter</button>
+        <button class="filter" data-kategori="hovedretter">Hovedretter</button>
+        <button class="filter" data-kategori="drikkevarer">Drikkevarer</button>
+        <button class="filter" data-kategori="sideorders">Sideorders</button>
+    </nav>
+
+
+
+</head>
+
+<section class="data-container"></section>
+<template>
+    <article id="mad">
+        <h2></h2>
+        <img src="" alt="">
+        <p class="kort"></p>
+        <p class="oprindelse"></p>
+        <p class="pris">Pris </p>
+    </article>
+</template>
+
+<body>
+
+
+    <footer>
+        <h1 class="footerh1">Adresse</h1>
+        <p class="footerp">Grønnegade 97 <br> 1234 København K</p>
+        <h1 class="footerh1">Åbningstider</h1>
+        <p class="footerp">Mandag-fredag 10:30-22:00 <br></p>
+        <p class="footerp">Fredag-søndag 12:00-23:00</p>
+
+
+    </footer>
+
+
+    <script>
+        const endpoint = "https://spreadsheets.google.com/feeds/list/17Dd7DvkPaFamNUdUKlrFgnH6POvBJXac7qyiS6zNRw0/od6/public/values?alt=json&fbclid=IwAR212z4P8-Ghh58GitdbY9ZU-e7dDv-kZC5B7zI4Z-c_MQGWcLRRx9m3JmM";
+        let mad = [];
+        let kategori = "alle";
+        const detalje = document.querySelector("#detalje");
+
+        document.addEventListener("DOMContentLoaded", start);
+
+        function start() {
+            loadData();
+        }
+
+        async function loadData() {
+            const response = await fetch(endpoint);
+            mad = await response.json();
+            console.log(mad);
+            visMad();
+        }
+
+
+        function visMad() {
+            const container = document.querySelector(".data-container");
+            container.innerHTML = "";
+            const template = document.querySelector("template");
+
+            mad.feed.entry.forEach(enRet => {
+                if (kategori == "alle" || kategori == enRet.gsx$kategori.$t) {
+                    let klon = template.cloneNode(true).content;
+                    klon.querySelector("h2").textContent = enRet.gsx$navn.$t;
+                    klon.querySelector("img").src = `imgs/small/${enRet.gsx$billede.$t}-sm.jpg`;
+                    klon.querySelector("img").alt = enRet.gsx$navn.$t;
+                    klon.querySelector(".kort").textContent += enRet.gsx$kort.$t;
+                    klon.querySelector(".pris").textContent += enRet.gsx$pris.$t + ",-";
+
+                    klon.querySelector("#mad").addEventListener("click", () => {
+                        visDetalje(enRet)
+                    });
+
+                    container.appendChild(klon);
+                    addEventListenersToButtons();
+                }
+            })
+        }
+
+
+        function visDetalje(enRet) {
+            detalje.classList.remove("skjul");
+            detalje.querySelector("button").addEventListener("click", () =>
+                detalje.classList.add("skjul"));
+            console.log(enRet.gsx$navn.$t);
+            detalje.querySelector("h1").textContent = enRet.gsx$navn.$t;
+            detalje.querySelector("img").src = `imgs/large/${enRet.gsx$billede.$t}.jpg`;
+            detalje.querySelector("img").alt = enRet.gsx$navn.$t;
+            detalje.querySelector("p").textContent = enRet.gsx$lang.$t;
+            detalje.querySelector("p + p").textContent = "Oprindelse: " + enRet.gsx$oprindelse.$t;
+            detalje.querySelector("p + p + p").textContent = "Pris: " + enRet.gsx$pris.$t + ",-";
+
+        }
+
+        function addEventListenersToButtons() {
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.addEventListener("click", filtrering);
+            })
+        }
+
+        function filtrering() {
+            console.log("Filtrering");
+            document.querySelector("h2").textContent = this.textContent;
+            kategori = this.dataset.kategori;
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.classList.remove("valgt");
+                window.scrollTo(0, 0);
+            })
+
+            this.classList.add("valgt");
+            visMad();
+        }
+
+    </script>
+</body>
+
+</html>

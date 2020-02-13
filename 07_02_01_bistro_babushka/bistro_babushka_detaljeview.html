@@ -4,12 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bistro Babushka</title>
+    <title>Bistro Babushka detaljeview</title>
     <link rel="stylesheet" href="">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
+            background-color: rgb(253, 243, 228);
+
         }
 
 
@@ -17,7 +19,7 @@
             width: 100%;
         }
 
-        section {
+        .data-container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 10px;
@@ -80,12 +82,13 @@
         }
 
         header {
-            position: fixed;
             background-color: white;
             height: 100px;
             z-index: 2px;
             width: 100vw;
             top: 0;
+            background-color: rgb(253, 243, 228);
+
         }
 
         .footerh1 {
@@ -106,7 +109,62 @@
             padding-bottom: 130px;
         }
 
+
+        .skjul {
+            display: none;
+        }
+
+        #detalje {
+            position: absolute;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 10;
+            overflow: scroll;
+        }
+
+
+        #detalje img {
+            width: 50%;
+            height: 50%;
+            display: flex;
+
+        }
+
+        #enRet {
+            margin: 3em;
+            padding: 2em;
+            background-color: white;
+            justify-content: center;
+        }
+
+
+
+        #x {
+            font-size: 3rem;
+            left: 38px;
+            position: absolute;
+
+        }
+
     </style>
+
+
+
+    <section id="detalje" class="skjul">
+        <button id="x">X</button>
+        <article id="enRet">
+            <h1>NAVN</h1>
+            <img src="" alt="">
+            <p>Kort</p>
+            <p>Oprindelse</p>
+            <p>Pris</p>
+
+        </article>
+    </section>
+
+
     <header>
         <h1>Bistro Babushka </h1>
     </header>
@@ -128,7 +186,9 @@
     <article id="mad">
         <h2></h2>
         <img src="" alt="">
-        <p class="kort">Kort </p>
+        <p class="kort"></p>
+        <p class="oprindelse"></p>
+
         <p class="pris">Pris </p>
     </article>
 </template>
@@ -151,6 +211,9 @@
         const endpoint = "https://spreadsheets.google.com/feeds/list/17Dd7DvkPaFamNUdUKlrFgnH6POvBJXac7qyiS6zNRw0/od6/public/values?alt=json&fbclid=IwAR212z4P8-Ghh58GitdbY9ZU-e7dDv-kZC5B7zI4Z-c_MQGWcLRRx9m3JmM";
         let mad = [];
         let kategori = "alle";
+        const detalje = document.querySelector("#detalje");
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
 
         document.addEventListener("DOMContentLoaded", start);
 
@@ -179,12 +242,23 @@
                     klon.querySelector("img").alt = enRet.gsx$navn.$t;
                     klon.querySelector(".kort").textContent += enRet.gsx$kort.$t;
                     klon.querySelector(".pris").textContent += enRet.gsx$pris.$t + ",-";
+
+                    klon.querySelector("#mad").addEventListener("click", () => {
+                        visDetalje(enRet)
+                    });
+
+                    klon.querySelector("#mad").addEventListener("click", () => {
+
+                        location.href = `detalje.html?id=${enRet.gsx$id.$t}`;
+
+
+                    });
+
                     container.appendChild(klon);
                     addEventListenersToButtons();
                 }
             })
         }
-
 
 
         function addEventListenersToButtons() {
